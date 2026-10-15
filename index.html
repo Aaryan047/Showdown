@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Showdown — Poker</title>
+<meta name="description" content="Texas Hold'em, Omaha, Seven-Card Stud and Five-Card Draw against AI opponents, with adjustable difficulty.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header class="app-header">
+    <div class="brand"><span class="suit">♠</span>Showdown<span class="suit">♣</span></div>
+    <div class="header-controls">
+      <div class="field">
+        <label for="difficultySelect">Difficulty</label>
+        <select id="difficultySelect">
+          <option value="easy">Easy</option>
+          <option value="medium" selected>Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </div>
+      <button class="btn ghost" id="soundToggle" type="button">Sound: On</button>
+      <button class="btn ghost" id="rankingsToggle" type="button">Hand rankings</button>
+      <button class="btn ghost" id="rulesToggle" type="button">Rules</button>
+      <button class="btn ghost" id="resetBtn" type="button">Reset table</button>
+    </div>
+  </header>
+
+  <main class="game-layout">
+    <nav class="variant-rail" id="variantRail"></nav>
+    <div class="table-wrap">
+      <div class="table-felt">
+        <div class="seat seat-1" id="seat1"></div>
+        <div class="seat seat-2" id="seat2"></div>
+        <div class="seat seat-3" id="seat3"></div>
+        <div class="community-row">
+          <div class="seat-cards" id="communityCards"></div>
+          <div class="pot" id="potAmount">Pot: 0</div>
+        </div>
+        <div class="seat seat-0" id="seat0"></div>
+      </div>
+    </div>
+  </main>
+
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="drawer" id="drawerPanel">
+    <div class="drawer-head">
+      <h2 id="drawerTitle">Hand rankings</h2>
+      <button class="btn ghost" id="drawerClose" type="button">Close</button>
+    </div>
+    <div id="drawerBody"></div>
+  </aside>
+
+  <div class="log" id="logPanel"></div>
+
+  <footer class="action-bar">
+    <div class="status-line" id="statusLine"></div>
+    <div class="action-row" id="actionRow" hidden>
+      <button class="btn fold" id="foldBtn" type="button">Fold</button>
+      <button class="btn" id="checkCallBtn" type="button">Check</button>
+      <button class="btn" id="betBtn" type="button">Bet / Raise</button>
+      <button class="btn primary" id="allInBtn" type="button">All in</button>
+    </div>
+    <div class="bet-controls" id="betControls" hidden>
+      <div class="bet-amount" id="betAmountDisplay">0</div>
+      <input type="range" id="betSlider" min="0" max="0" step="1" value="0">
+      <div class="quick-bets">
+        <button class="btn" id="halfPotBtn" type="button">½ Pot</button>
+        <button class="btn" id="potBtn" type="button">Pot</button>
+        <button class="btn" id="maxBetBtn" type="button">Max</button>
+        <button class="btn primary" id="confirmBetBtn" type="button">Confirm</button>
+        <button class="btn ghost" id="cancelBetBtn" type="button">Cancel</button>
+      </div>
+    </div>
+    <div class="draw-controls" id="drawControls" hidden>
+      <button class="btn primary" id="confirmDrawBtn" type="button">Stand pat</button>
+    </div>
+    <button class="btn primary" id="nextHandBtn" type="button" hidden>Deal next hand</button>
+  </footer>
+</div>
+
+<canvas id="confettiCanvas" hidden></canvas>
+<div class="screen-flash" id="screenFlash"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
